@@ -1,14 +1,23 @@
-group 'org.fxclub.qa'
-version '1.0-SNAPSHOT'
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
 
-apply plugin: 'java'
-apply plugin: 'com.jfrog.bintray'
+plugins {
+    id "com.jfrog.bintray" version "1.7.3"
+}
 
-sourceCompatibility = 1.8
+group = 'org.fxclub.qa'
+version = '1.0-BETA1'
 
-repositories {
-    mavenCentral()
-    maven { url 'https://jitpack.io' }
+allprojects {
+    repositories {
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+    apply plugin: 'java'
+    sourceCompatibility = 1.8
 }
 
 dependencies {
@@ -22,9 +31,6 @@ dependencies {
     compile 'com.github.letsrokk:j-text-utils:0.5.0'
     // https://mvnrepository.com/artifact/commons-io/commons-io
     compile group: 'commons-io', name: 'commons-io', version: '2.5'
-
-    // https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12
-    // testCompile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.25'
 }
 
 bintray {
@@ -38,21 +44,18 @@ bintray {
         userOrg = 'letsrokk'
         repo = 'github'
         name = 'cucumber-jvm-console-formatter'
-        desc = 'Allure Java integrations'
-        websiteUrl = 'https://github.com/letsrokk/allure-java'
-        issueTrackerUrl = 'https://github.com/letsrokk/allure-java'
-        vcsUrl = 'https://github.com/letsrokk/allure-java.git'
+        desc = 'Console Output Formatter for Cucumber JVM'
+        websiteUrl = 'https://github.com/letsrokk/cucumber-jvm-console-formatter'
+        issueTrackerUrl = 'https://github.com/letsrokk/cucumber-jvm-console-formatter/issues'
+        vcsUrl = 'https://github.com/letsrokk/cucumber-jvm-console-formatter.git'
         licenses = ['Apache-2.0']
 
-        githubRepo = 'letsrokk/allure-java'
-        githubReleaseNotesFile = 'README.md'
+        githubRepo = 'letsrokk/cucumber-jvm-console-formatter'
+        //githubReleaseNotesFile = 'CHANGELOG.md'
 
         version {
             name = project.version
             released = new Date()
-            gpg {
-                sign = true
-            }
         }
     }
 }
