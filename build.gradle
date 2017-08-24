@@ -1,0 +1,58 @@
+group 'org.fxclub.qa'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'com.jfrog.bintray'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/info.cukes/cucumber-java
+    compile group: 'info.cukes', name: 'cucumber-java', version: '1.2.5'
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.6'
+    // https://jitpack.io/#letsrokk/j-text-utils/0.3.3
+    compile 'com.github.letsrokk:j-text-utils:0.5.0'
+    // https://mvnrepository.com/artifact/commons-io/commons-io
+    compile group: 'commons-io', name: 'commons-io', version: '2.5'
+
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12
+    // testCompile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.25'
+}
+
+bintray {
+    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+
+    configurations = ['archives']
+
+    publish = true
+    pkg {
+        userOrg = 'letsrokk'
+        repo = 'github'
+        name = 'cucumber-jvm-console-formatter'
+        desc = 'Allure Java integrations'
+        websiteUrl = 'https://github.com/letsrokk/allure-java'
+        issueTrackerUrl = 'https://github.com/letsrokk/allure-java'
+        vcsUrl = 'https://github.com/letsrokk/allure-java.git'
+        licenses = ['Apache-2.0']
+
+        githubRepo = 'letsrokk/allure-java'
+        githubReleaseNotesFile = 'README.md'
+
+        version {
+            name = project.version
+            released = new Date()
+            gpg {
+                sign = true
+            }
+        }
+    }
+}
