@@ -1,8 +1,6 @@
-# cucumber-jvm-console-formatter
+# cucumber-jvm-console-formatter [ ![Download](https://api.bintray.com/packages/letsrokk/github/cucumber-jvm-console-formatter/images/download.svg) ](https://bintray.com/letsrokk/github/cucumber-jvm-console-formatter/_latestVersion)
 
 Console Output Formatter for Cucumber JVM
-
-[ ![Download](https://api.bintray.com/packages/letsrokk/github/cucumber-jvm-console-formatter/images/download.svg) ](https://bintray.com/letsrokk/github/cucumber-jvm-console-formatter/_latestVersion)
 
 # Formatters
 
