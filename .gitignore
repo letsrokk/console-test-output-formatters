@@ -21,6 +21,7 @@ gradle-app.setting
 
 # User-specific stuff:
 .idea/
+cucumber-jvm-console-formatter.iml
 
 ## File-based project format:
 *.iws
