@@ -2,6 +2,8 @@
 
 Console Output Formatter for Cucumber JVM
 
+[ ![Download](https://api.bintray.com/packages/letsrokk/github/cucumber-jvm-console-formatter/images/download.svg) ](https://bintray.com/letsrokk/github/cucumber-jvm-console-formatter/_latestVersion)
+
 # Formatters
 
 - org.fxclub.qa.cucumber.ConsoleFormatter - prints test progress to console, compatible with tests executed in parallel using https://github.com/temyers/cucumber-jvm-parallel-plugin
