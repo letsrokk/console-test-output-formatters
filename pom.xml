@@ -6,7 +6,7 @@
 
     <groupId>org.fxclub.qa</groupId>
     <artifactId>cucumber-jvm-console-formatter</artifactId>
-    <version>1.0-BETA2</version>
+    <version>1.0</version>
 
     <properties>
         <project.jdk.version>1.8</project.jdk.version>
