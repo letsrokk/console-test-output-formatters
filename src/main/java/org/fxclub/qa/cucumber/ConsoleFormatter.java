@@ -86,7 +86,7 @@ public class ConsoleFormatter implements Reporter, Formatter {
         int index = ConsoleFormatterTestCounter.getFinishCounter();
         String featureName = currentFeature.getName();
         String scenarioName = currentScenario.getName();
-        String params = getParametersString(this.currentExamples);
+        String params = getParametersString(currentScenario, this.currentExamples);
 
         if(currentStatus.equals(Result.PASSED)){
             String message = String.format("#%4d %9s - %s: %s [%s]",index,"["+currentStatus.toUpperCase()+"]",featureName,scenarioName,params);
@@ -165,11 +165,16 @@ public class ConsoleFormatter implements Reporter, Formatter {
         return table;
     }
 
-    private String getParametersString(Examples examples){
+    private String getParametersString(Scenario scenario, Examples examples){
         if(examples == null || examples.getRows().size() == 0)
             return "";
         else
-            return examples.getRows().get(1).getCells().toString();
+            return examples.getRows().stream()
+                    .filter(exmpl -> exmpl.getLine() == scenario.getLine())
+                    .findFirst()
+                    .get()
+                    .getCells()
+                    .toString();
     }
 
     @Override
