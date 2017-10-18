@@ -5,16 +5,27 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.fxclub.qa</groupId>
-    <artifactId>cucumber-jvm-console-formatter</artifactId>
-    <version>1.0</version>
+    <artifactId>cucumber-jvm-console-plugin-parent</artifactId>
+    <version>2.0-SNAPSHOT</version>
+    <modules>
+        <module>cucumber-jvm</module>
+        <module>cucumber2-jvm-console-plugin</module>
+    </modules>
+
+    <packaging>pom</packaging>
+
+    <name>cucumber-jvm-console-plugin</name>
+    <description>Cucumber JVM Console Output Plugin</description>
 
     <properties>
         <project.jdk.version>1.8</project.jdk.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <cucumber.version>1.2.5</cucumber.version>
         <cucumber.jvm.parallel.version>4.2.0</cucumber.jvm.parallel.version>
+        <cucumber.options.features>src/test/resources/features/</cucumber.options.features>
+        <cucumber.options.glue/>
+        <cucumber.options.plugin/>
     </properties>
 
     <repositories>
@@ -32,62 +43,39 @@
         </repository>
     </repositories>
 
-    <dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.24</version>
+            </dependency>
 
-        <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-java -->
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <version>${cucumber.version}</version>
-        </dependency>
+            <!-- https://jitpack.io/#letsrokk/j-text-utils/0.3.3 -->
+            <dependency>
+                <groupId>com.github.letsrokk</groupId>
+                <artifactId>j-text-utils</artifactId>
+                <version>0.5.0</version>
+            </dependency>
 
-        <!-- https://jitpack.io/#letsrokk/j-text-utils/0.3.3 -->
-        <dependency>
-            <groupId>com.github.letsrokk</groupId>
-            <artifactId>j-text-utils</artifactId>
-            <version>0.5.0</version>
-        </dependency>
+            <!-- https://mvnrepository.com/artifact/junit/junit -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+                <scope>test</scope>
+            </dependency>
 
-        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.5</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.24</version>
-        </dependency>
-
-        <!-- Tests -->
-
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-junit -->
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-testng</artifactId>
-            <version>${cucumber.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.25</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+            <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>1.7.25</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
@@ -102,61 +90,65 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>com.github.temyers</groupId>
-                <artifactId>cucumber-jvm-parallel-plugin</artifactId>
-                <version>${cucumber.jvm.parallel.version}</version>
-                <executions>
-                    <execution>
-                        <id>generateRunners</id>
-                        <phase>generate-test-sources</phase>
-                        <goals>
-                            <goal>generateRunners</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.build.directory}/generated-test-sources/cucumber</outputDirectory>
-                            <!-- The directory, which must be in the root of the runtime classpath, containing your feature files.  -->
-                            <featuresDirectory>src/test/resources/features/</featuresDirectory>
-                            <!-- Directory where the cucumber report files shall be written  -->
-                            <cucumberOutputDir>target/cucumber-parallel</cucumberOutputDir>
-                            <glue>
-                                <package>org.fclub.qa.cucumber.examples.steps</package>
-                            </glue>
-                            <plugins>
-                                <plugin>
-                                    <name>null_summary</name>
-                                </plugin>
-                                <plugin>
-                                    <name>json</name>
-                                </plugin>
-                                <plugin>
-                                    <name>org.fxclub.qa.cucumber.ConsoleFormatter</name>
-                                    <noOutput>true</noOutput>
-                                </plugin>
-                            </plugins>
-                            <strict>true</strict>
-                            <monochrome>false</monochrome>
-                            <useTestNG>true</useTestNG>
-                            <namingScheme>pattern</namingScheme>
-                            <namingPattern>{f}{c}Test</namingPattern>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.20</version>
-                <configuration>
-                    <parallel>classes</parallel>
-                    <useUnlimitedThreads>true</useUnlimitedThreads>
-                    <forkCount>5</forkCount>
-                    <reuseForks>true</reuseForks>
-                    <testFailureIgnore>true</testFailureIgnore>
-                    <printSummary>false</printSummary>
-                </configuration>
-            </plugin>
         </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.github.temyers</groupId>
+                    <artifactId>cucumber-jvm-parallel-plugin</artifactId>
+                    <version>${cucumber.jvm.parallel.version}</version>
+                    <executions>
+                        <execution>
+                            <id>generateRunners</id>
+                            <phase>generate-test-sources</phase>
+                            <goals>
+                                <goal>generateRunners</goal>
+                            </goals>
+                            <configuration>
+                                <outputDirectory>${project.build.directory}/generated-test-sources/cucumber</outputDirectory>
+                                <!-- The directory, which must be in the root of the runtime classpath, containing your feature files.  -->
+                                <featuresDirectory>${cucumber.options.features}</featuresDirectory>
+                                <!-- Directory where the cucumber report files shall be written  -->
+                                <cucumberOutputDir>target/cucumber-parallel</cucumberOutputDir>
+                                <glue>
+                                    <package>${cucumber.options.glue}</package>
+                                </glue>
+                                <plugins>
+                                    <plugin>
+                                        <name>null_summary</name>
+                                    </plugin>
+                                    <plugin>
+                                        <name>json</name>
+                                    </plugin>
+                                    <plugin>
+                                        <name>${cucumber.options.plugin}</name>
+                                        <noOutput>true</noOutput>
+                                    </plugin>
+                                </plugins>
+                                <strict>true</strict>
+                                <monochrome>false</monochrome>
+                                <!--<useTestNG>true</useTestNG>-->
+                                <namingScheme>pattern</namingScheme>
+                                <namingPattern>{f}{c}Test</namingPattern>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.20</version>
+                    <configuration>
+                        <parallel>classes</parallel>
+                        <useUnlimitedThreads>true</useUnlimitedThreads>
+                        <forkCount>5</forkCount>
+                        <reuseForks>true</reuseForks>
+                        <testFailureIgnore>true</testFailureIgnore>
+                        <printSummary>false</printSummary>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
     <distributionManagement>
