@@ -28,7 +28,7 @@ java.lang.AssertionError: expected:<16> but was:<15>
 	at org.junit.Assert.failNotEquals(Assert.java:834)
 	at org.junit.Assert.assertEquals(Assert.java:645)
 	at org.junit.Assert.assertEquals(Assert.java:631)
-	at org.fclub.qa.cucumber.examples.steps.Steps.сумма_равна(Steps.java:50)
+	at Steps.сумма_равна(Steps.java:50)
 	at ✽.Тогда сумма равна 16(/Users/majer-dy/Documents/IDEA/cucumber-jvm-console-formatter/src/test/resources/features/test-allure-failed.feature:15)
 
 2017-08-25 11:00:11 INFO  - #   8  [PASSED] - Тест allure 2: Scenario Structure [[1, 1, 2]]

@@ -1,4 +1,4 @@
-package org.fclub.qa.cucumber.examples.steps;
+package org.fxclub.qa.cucumber.examples.steps;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -7,7 +7,7 @@ import cucumber.api.java.ru.Дано;
 import cucumber.api.java.ru.Когда;
 import cucumber.api.java.ru.То;
 import cucumber.api.java.ru.Тогда;
-import org.junit.Assert;
+import org.testng.Assert;
 
 public class Steps {
 

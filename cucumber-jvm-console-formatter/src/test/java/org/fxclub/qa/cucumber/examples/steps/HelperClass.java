@@ -1,4 +1,4 @@
-package org.fclub.qa.cucumber.examples.steps;
+package org.fxclub.qa.cucumber.examples.steps;
 
 /**
  * Created by majer-dy on 19/04/2017.

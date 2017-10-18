@@ -1,7 +1,6 @@
-package org.fclub.qa.cucumber2.examples.steps;
+package org.fxclub.qa.cucumber2.examples.steps;
 
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -10,8 +9,7 @@ import cucumber.api.java.ru.Когда;
 import cucumber.api.java.ru.То;
 import cucumber.api.java.ru.Тогда;
 import gherkin.pickles.PickleRow;
-import gherkin.pickles.PickleTable;
-import org.junit.Assert;
+import org.testng.Assert;
 
 import java.util.Random;
 

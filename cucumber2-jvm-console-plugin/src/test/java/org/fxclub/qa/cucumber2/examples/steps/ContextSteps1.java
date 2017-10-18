@@ -1,7 +1,7 @@
-package org.fclub.qa.cucumber.examples.steps;
+package org.fxclub.qa.cucumber2.examples.steps;
 
 import cucumber.api.java.en.When;
-import org.fxclub.qa.cucumber.TestContext;
+import org.fxclub.qa.cucumber2.TestContext;
 
 /**
  * Created by majer-dy on 19/04/2017.

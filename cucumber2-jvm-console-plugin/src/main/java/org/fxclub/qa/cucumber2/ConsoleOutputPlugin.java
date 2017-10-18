@@ -3,6 +3,7 @@ package org.fxclub.qa.cucumber2;
 import cucumber.api.Result;
 import cucumber.api.event.*;
 import cucumber.api.formatter.Formatter;
+import cucumber.api.formatter.NiceAppendable;
 import cucumber.runtime.formatter.TestSourcesModel;
 import dnl.utils.text.table.TextTable;
 import gherkin.ast.*;
@@ -12,37 +13,47 @@ import org.apache.logging.log4j.Logger;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class ConsoleOutputPlugin implements Formatter {
 
-    private boolean useSystemOut = false;
     private Logger logger = LogManager.getLogger(ConsoleOutputPlugin.class);
 
+    private static AtomicInteger testCaseStartedCounter = new AtomicInteger(0);
+    private static AtomicInteger testCaseFinishedCounter = new AtomicInteger(0);
+
+    private NiceAppendable out;
+    private boolean useNiceAppendable = true;
+
+    public ConsoleOutputPlugin(Appendable out) {
+        this.out = new NiceAppendable(out);
+    }
+
     private void info(String message){
-        if(useSystemOut)
+        if(useNiceAppendable)
             consoleOutput(message);
         else
             logger.info(message);
     }
 
     private void debug(String message){
-        if(useSystemOut)
+        if(useNiceAppendable)
             consoleOutput(message);
         else
             logger.debug(message);
     }
 
     private void error(String message){
-        if(useSystemOut)
+        if(useNiceAppendable)
             consoleOutput(message);
         else
             logger.error(message);
     }
 
     private void consoleOutput(String message){
-        System.out.println(Thread.currentThread().getName() + " " + message);
+        out.println(Thread.currentThread().getName() + " " + message);
     }
 
     private final TestSourcesModel testSources = new TestSourcesModel();
@@ -63,7 +74,7 @@ public class ConsoleOutputPlugin implements Formatter {
     }
 
     private void handleTestCaseStarted(final TestCaseStarted event) {
-        int index = ConsoleFormatterTestCounter.getFinishCounter();
+        int currentTestCaseCounter = testCaseStartedCounter.incrementAndGet();
         String featureName = testSources.getFeature(event.testCase.getUri()).getName();
         String scenarioName = event.testCase.getName();
         ScenarioDefinition scenarioDefinition =
@@ -72,7 +83,7 @@ public class ConsoleOutputPlugin implements Formatter {
 
         String message = String.format(
                 "#%4d %9s - %s: %s %s",
-                index,
+                currentTestCaseCounter,
                 "[STARTED]",
                 featureName,
                 scenarioName,
@@ -82,7 +93,8 @@ public class ConsoleOutputPlugin implements Formatter {
     }
 
     private void handleTestCaseFinished(final TestCaseFinished event) {
-        int index = ConsoleFormatterTestCounter.getFinishCounter();
+        int currentTestCaseCounter = testCaseFinishedCounter.incrementAndGet();
+
         String featureName = testSources.getFeature(event.testCase.getUri()).getName();
         String scenarioName = event.testCase.getName();
         ScenarioDefinition scenarioDefinition =
@@ -92,7 +104,7 @@ public class ConsoleOutputPlugin implements Formatter {
         if(event.result.getStatus() == Result.Type.PASSED){
             String message = String.format(
                     "#%4d %9s - %s: %s %s",
-                    index,
+                    currentTestCaseCounter,
                     "["+event.result.getStatus().lowerCaseName().toUpperCase()+"]",
                     featureName,
                     scenarioName,
@@ -105,14 +117,14 @@ public class ConsoleOutputPlugin implements Formatter {
 
             String message = String.format(
                     "#%4d %9s - %s: %s %s",
-                    index,
+                    currentTestCaseCounter,
                     "["+event.result.getStatus().lowerCaseName().toUpperCase()+"]",
                     featureName,
                     scenarioName,
                     params
             );
 
-            if(scenarioSteps != null && !scenarioSteps.equals("")){
+            if(!scenarioSteps.equals("")){
                 message = String.format(
                         message + lineSeparator+"%s",
                         lineSeparator + scenarioSteps

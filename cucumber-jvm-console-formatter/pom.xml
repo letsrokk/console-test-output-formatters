@@ -16,7 +16,7 @@
     <properties>
         <cucumber.version>1.2.5</cucumber.version>
 
-        <cucumber.options.glue>org.fclub.qa.cucumber.examples.steps</cucumber.options.glue>
+        <cucumber.options.glue>org.fxclub.qa.cucumber.examples.steps</cucumber.options.glue>
         <cucumber.options.plugin>org.fxclub.qa.cucumber.ConsoleFormatter</cucumber.options.plugin>
     </properties>
 
@@ -26,6 +26,7 @@
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>${cucumber.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -53,17 +54,10 @@
 
         <!-- Tests -->
 
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-junit -->
         <dependency>
             <groupId>info.cukes</groupId>
-            <artifactId>cucumber-junit</artifactId>
+            <artifactId>cucumber-testng</artifactId>
             <version>${cucumber.version}</version>
             <scope>test</scope>
         </dependency>

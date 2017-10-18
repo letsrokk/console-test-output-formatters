@@ -9,12 +9,12 @@
     <artifactId>cucumber-jvm-console-plugin-parent</artifactId>
     <version>2.0</version>
     <modules>
-        <module>cucumber-jvm</module>
+        <module>cucumber-jvm-console-formatter</module>
         <module>cucumber2-jvm-console-plugin</module>
     </modules>
 
-    <name>cucumber-jvm-console-plugin</name>
-    <description>Cucumber JVM Console Output Plugin</description>
+    <name>cucumber-jvm-console-plugins</name>
+    <description>Cucumber JVM Console Output Plugins</description>
 
     <properties>
         <project.jdk.version>1.8</project.jdk.version>
@@ -26,7 +26,7 @@
         <cucumber.options.glue/>
         <cucumber.options.plugin/>
 
-        <surefire.thread.count>5</surefire.thread.count>
+        <surefire.thread.count>3</surefire.thread.count>
     </properties>
 
     <repositories>
@@ -66,15 +66,6 @@
                 <artifactId>j-text-utils</artifactId>
                 <version>0.5.0</version>
             </dependency>
-
-            <!-- https://mvnrepository.com/artifact/junit/junit -->
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.12</version>
-                <scope>test</scope>
-            </dependency>
-
         </dependencies>
     </dependencyManagement>
 
@@ -129,7 +120,7 @@
                                 </plugins>
                                 <strict>true</strict>
                                 <monochrome>false</monochrome>
-                                <!--<useTestNG>true</useTestNG>-->
+                                <useTestNG>true</useTestNG>
                                 <namingScheme>pattern</namingScheme>
                                 <namingPattern>{f}{c}Test</namingPattern>
                                 <parallelScheme>SCENARIO</parallelScheme>
@@ -144,7 +135,6 @@
                     <configuration>
                         <parallel>classes</parallel>
                         <threadCount>${surefire.thread.count}</threadCount>
-                        <perCoreThreadCount>false</perCoreThreadCount>
                         <testFailureIgnore>true</testFailureIgnore>
                         <printSummary>false</printSummary>
                     </configuration>
