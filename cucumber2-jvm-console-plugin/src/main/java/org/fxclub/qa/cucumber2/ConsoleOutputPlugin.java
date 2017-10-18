@@ -6,34 +6,79 @@ import cucumber.api.formatter.Formatter;
 import cucumber.runtime.formatter.TestSourcesModel;
 import dnl.utils.text.table.TextTable;
 import gherkin.ast.*;
-import gherkin.pickles.PickleRow;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class ConsoleOutputPlugin implements Formatter {
 
-    private Logger logger = LoggerFactory.getLogger(ConsoleOutputPlugin.class);
+    private boolean useSystemOut = false;
+    private Logger logger = LogManager.getLogger(ConsoleOutputPlugin.class);
+
+    private void info(String message){
+        if(useSystemOut)
+            consoleOutput(message);
+        else
+            logger.info(message);
+    }
+
+    private void debug(String message){
+        if(useSystemOut)
+            consoleOutput(message);
+        else
+            logger.debug(message);
+    }
+
+    private void error(String message){
+        if(useSystemOut)
+            consoleOutput(message);
+        else
+            logger.error(message);
+    }
+
+    private void consoleOutput(String message){
+        System.out.println(Thread.currentThread().getName() + " " + message);
+    }
 
     private final TestSourcesModel testSources = new TestSourcesModel();
 
     private final EventHandler<TestSourceRead> featureStartedHandler = this::handleFeatureStartedHandler;
+    private final EventHandler<TestCaseStarted> caseStartedHandler = this::handleTestCaseStarted;
     private final EventHandler<TestCaseFinished> caseFinishedHandler = this::handleTestCaseFinished;
 
     @Override
     public void setEventPublisher(EventPublisher eventPublisher) {
         eventPublisher.registerHandlerFor(TestSourceRead.class, featureStartedHandler);
+        eventPublisher.registerHandlerFor(TestCaseStarted.class, caseStartedHandler);
         eventPublisher.registerHandlerFor(TestCaseFinished.class, caseFinishedHandler);
     }
 
     private void handleFeatureStartedHandler(final TestSourceRead event) {
         testSources.addTestSourceReadEvent(event.uri, event);
+    }
+
+    private void handleTestCaseStarted(final TestCaseStarted event) {
+        int index = ConsoleFormatterTestCounter.getFinishCounter();
+        String featureName = testSources.getFeature(event.testCase.getUri()).getName();
+        String scenarioName = event.testCase.getName();
+        ScenarioDefinition scenarioDefinition =
+                testSources.getScenarioDefinition(event.testCase.getUri(), event.testCase.getLine());
+        String params = getExamplesAsParameters(scenarioDefinition, event.testCase.getLine());
+
+        String message = String.format(
+                "#%4d %9s - %s: %s %s",
+                index,
+                "[STARTED]",
+                featureName,
+                scenarioName,
+                params
+        );
+        debug(message);
     }
 
     private void handleTestCaseFinished(final TestCaseFinished event) {
@@ -53,7 +98,7 @@ public class ConsoleOutputPlugin implements Formatter {
                     scenarioName,
                     params
             );
-            logger.info(message);
+            info(message);
         } else {
             String lineSeparator = System.getProperty("line.separator");
             String scenarioSteps = getScenarioAsString(scenarioDefinition);
@@ -81,7 +126,7 @@ public class ConsoleOutputPlugin implements Formatter {
                 );
             }
 
-            logger.error(message);
+            error(message);
         }
     }
 

@@ -13,6 +13,8 @@ import gherkin.pickles.PickleRow;
 import gherkin.pickles.PickleTable;
 import org.junit.Assert;
 
+import java.util.Random;
+
 public class Steps {
 
     private String URL_First;
@@ -120,7 +122,7 @@ public class Steps {
     }
 
     private void sleep() throws InterruptedException {
-//        Thread.sleep(1000 + new Random().nextInt(1000));
+        Thread.sleep(100 + new Random().nextInt(200));
     }
 
     @When("^test case has @TestCaseID$")

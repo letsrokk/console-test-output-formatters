@@ -2,11 +2,13 @@
 @third
 Feature: Text allure 3
 
+  @good
   Scenario: Scenario
     Given Anything in given with dots. This is an example
     When whe run the scenario 
     Then scenario name shuld be complete
 
+  @good
   Scenario Outline: Scenario Structure
     Given An URL <URL_First>
     And another URL <URL_Second>

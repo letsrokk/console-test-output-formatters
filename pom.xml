@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.fxclub.qa</groupId>
@@ -11,8 +12,6 @@
         <module>cucumber-jvm</module>
         <module>cucumber2-jvm-console-plugin</module>
     </modules>
-
-    <packaging>pom</packaging>
 
     <name>cucumber-jvm-console-plugin</name>
     <description>Cucumber JVM Console Output Plugin</description>
@@ -26,6 +25,8 @@
         <cucumber.options.features>src/test/resources/features/</cucumber.options.features>
         <cucumber.options.glue/>
         <cucumber.options.plugin/>
+
+        <surefire.thread.count>5</surefire.thread.count>
     </properties>
 
     <repositories>
@@ -45,11 +46,18 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+            <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
             <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>1.7.24</version>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>2.9.1</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>2.9.1</version>
             </dependency>
 
             <!-- https://jitpack.io/#letsrokk/j-text-utils/0.3.3 -->
@@ -67,13 +75,6 @@
                 <scope>test</scope>
             </dependency>
 
-            <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>1.7.25</version>
-                <scope>test</scope>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -108,6 +109,7 @@
                                 <outputDirectory>${project.build.directory}/generated-test-sources/cucumber</outputDirectory>
                                 <!-- The directory, which must be in the root of the runtime classpath, containing your feature files.  -->
                                 <featuresDirectory>${cucumber.options.features}</featuresDirectory>
+                                <tags>@good</tags>
                                 <!-- Directory where the cucumber report files shall be written  -->
                                 <cucumberOutputDir>target/cucumber-parallel</cucumberOutputDir>
                                 <glue>
@@ -130,6 +132,7 @@
                                 <!--<useTestNG>true</useTestNG>-->
                                 <namingScheme>pattern</namingScheme>
                                 <namingPattern>{f}{c}Test</namingPattern>
+                                <parallelScheme>SCENARIO</parallelScheme>
                             </configuration>
                         </execution>
                     </executions>
@@ -140,9 +143,8 @@
                     <version>2.20</version>
                     <configuration>
                         <parallel>classes</parallel>
-                        <useUnlimitedThreads>true</useUnlimitedThreads>
-                        <forkCount>5</forkCount>
-                        <reuseForks>true</reuseForks>
+                        <threadCount>${surefire.thread.count}</threadCount>
+                        <perCoreThreadCount>false</perCoreThreadCount>
                         <testFailureIgnore>true</testFailureIgnore>
                         <printSummary>false</printSummary>
                     </configuration>
@@ -155,7 +157,7 @@
         <repository>
             <id>bintray-letsrokk-github</id>
             <name>letsrokk-github</name>
-            <url>https://api.bintray.com/maven/letsrokk/github/cucumber-jvm-console-formatter/;publish=1</url>
+            <url>https://api.bintray.com/maven/letsrokk/github/cucumber-jvm-console-plugins/;publish=1;override=1</url>
         </repository>
     </distributionManagement>
 

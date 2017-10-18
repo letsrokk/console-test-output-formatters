@@ -7,8 +7,8 @@ import gherkin.formatter.Formatter;
 import gherkin.formatter.Reporter;
 import gherkin.formatter.model.*;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class ConsoleFormatter implements Reporter, Formatter {
 
-    private Logger logger = LoggerFactory.getLogger(ConsoleFormatter.class);
+    private Logger logger = LogManager.getLogger(ConsoleFormatter.class);
 
     private Feature currentFeature;
     private Examples currentExamples;
