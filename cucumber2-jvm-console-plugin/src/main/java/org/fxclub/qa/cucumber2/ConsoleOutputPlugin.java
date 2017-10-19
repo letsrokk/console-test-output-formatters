@@ -65,7 +65,7 @@ public class ConsoleOutputPlugin implements Formatter {
     @Override
     public void setEventPublisher(EventPublisher eventPublisher) {
         eventPublisher.registerHandlerFor(TestSourceRead.class, featureStartedHandler);
-        eventPublisher.registerHandlerFor(TestCaseStarted.class, caseStartedHandler);
+        //eventPublisher.registerHandlerFor(TestCaseStarted.class, caseStartedHandler);
         eventPublisher.registerHandlerFor(TestCaseFinished.class, caseFinishedHandler);
     }
 
