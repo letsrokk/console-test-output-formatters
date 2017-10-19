@@ -115,10 +115,14 @@ public class ConsoleOutputPlugin implements Formatter {
             String lineSeparator = System.getProperty("line.separator");
             String scenarioSteps = getScenarioAsString(scenarioDefinition);
 
+            String status = event.result.getStatus() == Result.Type.UNDEFINED
+                    ? Result.Type.SKIPPED.lowerCaseName().toUpperCase()
+                    : event.result.getStatus().lowerCaseName().toUpperCase();
+
             String message = String.format(
                     "#%4d %9s - %s: %s %s",
                     currentTestCaseCounter,
-                    "["+event.result.getStatus().lowerCaseName().toUpperCase()+"]",
+                    "["+status+"]",
                     featureName,
                     scenarioName,
                     params
