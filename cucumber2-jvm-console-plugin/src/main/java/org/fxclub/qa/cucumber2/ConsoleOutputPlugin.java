@@ -53,7 +53,7 @@ public class ConsoleOutputPlugin implements Formatter {
     }
 
     private void consoleOutput(String message){
-        out.println(Thread.currentThread().getName() + " " + message);
+        out.println(message);
     }
 
     private final TestSourcesModel testSources = new TestSourcesModel();
