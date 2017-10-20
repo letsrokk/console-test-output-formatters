@@ -39,9 +39,8 @@
             <artifactId>log4j-core</artifactId>
         </dependency>
 
-        <!-- https://jitpack.io/#letsrokk/j-text-utils/0.3.3 -->
         <dependency>
-            <groupId>com.github.letsrokk</groupId>
+            <groupId>dnl.utils</groupId>
             <artifactId>j-text-utils</artifactId>
         </dependency>
 

@@ -38,10 +38,6 @@
             <name>bintray</name>
             <url>http://dl.bintray.com/letsrokk/github</url>
         </repository>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
     </repositories>
 
     <dependencyManagement>
@@ -60,12 +56,13 @@
                 <version>2.9.1</version>
             </dependency>
 
-            <!-- https://jitpack.io/#letsrokk/j-text-utils/0.3.3 -->
+            <!-- https://bintray.com/letsrokk/github/j-text-utils -->
             <dependency>
-                <groupId>com.github.letsrokk</groupId>
+                <groupId>dnl.utils</groupId>
                 <artifactId>j-text-utils</artifactId>
-                <version>0.5.0</version>
+                <version>0.6.0</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 
