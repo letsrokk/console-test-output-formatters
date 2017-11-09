@@ -1,10 +1,11 @@
-# cucumber-jvm-console-formatter [ ![Download](https://api.bintray.com/packages/letsrokk/github/cucumber-jvm-console-plugins/images/download.svg) ](https://bintray.com/letsrokk/github/cucumber-jvm-console-plugins/_latestVersion)
+# cucumber-jvm-console-plugins [ ![Download](https://api.bintray.com/packages/letsrokk/github/cucumber-jvm-console-plugins/images/download.svg) ](https://bintray.com/letsrokk/github/cucumber-jvm-console-plugins/_latestVersion)
 
 Print out Scenario execution results in console. 
 Created to print results for Scenarios which are executed in parallel (e.g. using [cucumber-jvm-parallel-plugin](https://github.com/temyers/cucumber-jvm-parallel-plugin)) 
 
 _**Important note**_:
-Supported only parallel execution in threads, without forking VMs. With VM forks, test counter may not work properly
+Supported only parallel execution in threads, without forking VMs. With VM forks, test counter may not work properl.
+
 e.g. parallel execution with `maven-surefire-plugin`: `forkCount` parameter can only be set to `0` or `1`.
 
 # Cucumber JVM 2.0
