@@ -4,7 +4,6 @@ import cucumber.api.Result;
 import cucumber.api.event.*;
 import cucumber.api.formatter.Formatter;
 import cucumber.api.formatter.NiceAppendable;
-import cucumber.runtime.formatter.TestSourcesModel;
 import dnl.utils.text.table.TextTable;
 import gherkin.ast.*;
 import org.apache.logging.log4j.LogManager;
@@ -56,7 +55,7 @@ public class ConsoleOutputPlugin implements Formatter {
         out.println(message);
     }
 
-    private final TestSourcesModel testSources = new TestSourcesModel();
+    private final CucumberSourceUtils testSources = new CucumberSourceUtils();
 
     private final EventHandler<TestSourceRead> featureStartedHandler = this::handleFeatureStartedHandler;
     private final EventHandler<TestCaseStarted> caseStartedHandler = this::handleTestCaseStarted;

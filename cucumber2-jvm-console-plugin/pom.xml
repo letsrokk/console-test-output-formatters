@@ -14,7 +14,7 @@
     <artifactId>cucumber2-jvm-console-plugin</artifactId>
 
     <properties>
-        <cucumber.version>2.0.1</cucumber.version>
+        <cucumber.version>2.1.0</cucumber.version>
 
         <cucumber.options.glue>org.fxclub.qa.cucumber2.examples.steps</cucumber.options.glue>
         <cucumber.options.plugin>org.fxclub.qa.cucumber2.ConsoleOutputPlugin</cucumber.options.plugin>
