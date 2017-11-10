@@ -60,14 +60,12 @@ public class ConsoleOutputPlugin implements Formatter {
     private final EventHandler<TestSourceRead> featureStartedHandler = this::handleFeatureStartedHandler;
     private final EventHandler<TestCaseStarted> caseStartedHandler = this::handleTestCaseStarted;
     private final EventHandler<TestCaseFinished> caseFinishedHandler = this::handleTestCaseFinished;
-    private final EventHandler<TestRunFinished> runFinishedHandler = event -> finishReport();
 
     @Override
     public void setEventPublisher(EventPublisher eventPublisher) {
         eventPublisher.registerHandlerFor(TestSourceRead.class, featureStartedHandler);
         //eventPublisher.registerHandlerFor(TestCaseStarted.class, caseStartedHandler);
         eventPublisher.registerHandlerFor(TestCaseFinished.class, caseFinishedHandler);
-        eventPublisher.registerHandlerFor(TestRunFinished.class, runFinishedHandler);
     }
 
     private void handleFeatureStartedHandler(final TestSourceRead event) {
@@ -145,10 +143,6 @@ public class ConsoleOutputPlugin implements Formatter {
 
             error(message);
         }
-    }
-
-    private void finishReport() {
-        out.close();
     }
 
     private String getScenarioAsString(ScenarioDefinition scenarioDefinition){
