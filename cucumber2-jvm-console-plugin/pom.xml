@@ -77,16 +77,9 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.0.2</version>
                 <configuration>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <version>3.0.2</version>
-                        <configuration>
-                            <excludes>
-                                <exclude>log4j2.xml</exclude>
-                            </excludes>
-                        </configuration>
-                    </plugin>
+                    <excludes>
+                        <exclude>log4j2.xml</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
         </plugins>
