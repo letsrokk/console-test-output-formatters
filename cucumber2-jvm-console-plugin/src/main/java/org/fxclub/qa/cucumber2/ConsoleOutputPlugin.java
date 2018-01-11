@@ -24,7 +24,7 @@ public class ConsoleOutputPlugin implements Formatter {
     private static AtomicInteger testCaseFinishedCounter = new AtomicInteger(0);
 
     private final NiceAppendable out;
-    private boolean useNiceAppendable = true;
+    private boolean useNiceAppendable = false;
 
     public ConsoleOutputPlugin(Appendable out) {
         this.out = new NiceAppendable(out);
