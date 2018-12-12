@@ -7,10 +7,11 @@
 
     <groupId>org.fxclub.qa</groupId>
     <artifactId>cucumber-jvm-console-plugin-parent</artifactId>
-    <version>2.1.1</version>
+    <version>4.0.0</version>
     <modules>
         <module>cucumber-jvm-console-formatter</module>
         <module>cucumber2-jvm-console-plugin</module>
+        <module>cucumber-jvm4-console-plugin</module>
     </modules>
 
     <name>cucumber-jvm-console-plugins</name>

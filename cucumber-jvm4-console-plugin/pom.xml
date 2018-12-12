@@ -2,28 +2,34 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <packaging>jar</packaging>
-    <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <artifactId>cucumber-jvm-console-plugin-parent</artifactId>
         <groupId>org.fxclub.qa</groupId>
         <version>4.0.0</version>
     </parent>
+    <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cucumber-jvm-console-formatter</artifactId>
+    <artifactId>cucumber-jvm4-console-plugin</artifactId>
 
     <properties>
-        <cucumber.version>1.2.5</cucumber.version>
+        <cucumber.version>4.2.0</cucumber.version>
 
-        <cucumber.options.glue>org.fxclub.qa.cucumber.examples.steps</cucumber.options.glue>
-        <cucumber.options.plugin>org.fxclub.qa.cucumber.ConsoleFormatter</cucumber.options.plugin>
+        <cucumber.options.glue>org.fxclub.qa.cucumber4.examples.steps</cucumber.options.glue>
+        <cucumber.options.plugin>org.fxclub.qa.cucumber4.ConsoleOutputPlugin</cucumber.options.plugin>
     </properties>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-java -->
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-core -->
         <dependency>
-            <groupId>info.cukes</groupId>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-core</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>${cucumber.version}</version>
             <scope>provided</scope>
@@ -44,18 +50,9 @@
             <artifactId>j-text-utils</artifactId>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
         <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.5</version>
-        </dependency>
-
-        <!-- Tests -->
-
-        <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-junit -->
-        <dependency>
-            <groupId>info.cukes</groupId>
+            <groupId>io.cucumber</groupId>
             <artifactId>cucumber-testng</artifactId>
             <version>${cucumber.version}</version>
             <scope>test</scope>
@@ -72,6 +69,16 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <excludes>
+                        <exclude>log4j2.xml</exclude>
+                    </excludes>
+                </configuration>
             </plugin>
         </plugins>
     </build>
