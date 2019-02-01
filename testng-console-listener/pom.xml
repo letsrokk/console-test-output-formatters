@@ -3,7 +3,7 @@
     <parent>
         <artifactId>console-test-output-formatters-parent</artifactId>
         <groupId>org.fxclub.qa</groupId>
-        <version>5.0.1-SNAPSHOT</version>
+        <version>5.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -26,10 +26,6 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>com.github.temyers</groupId>
-                <artifactId>cucumber-jvm-parallel-plugin</artifactId>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
