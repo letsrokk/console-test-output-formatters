@@ -106,6 +106,9 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                </configuration>
             </plugin>
         </plugins>
         <pluginManagement>
