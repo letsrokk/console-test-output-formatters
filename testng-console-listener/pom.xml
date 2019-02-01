@@ -9,55 +9,21 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cucumber-jvm4-console-plugin</artifactId>
-
-    <properties>
-        <cucumber.version>4.2.0</cucumber.version>
-
-        <cucumber.options.glue>org.fxclub.qa.cucumber4.examples.steps</cucumber.options.glue>
-        <cucumber.options.plugin>org.fxclub.qa.cucumber4.ConsoleOutputPlugin</cucumber.options.plugin>
-    </properties>
+    <artifactId>testng-console-listener</artifactId>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-core -->
         <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-core</artifactId>
-            <version>${cucumber.version}</version>
-            <scope>provided</scope>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <version>${cucumber.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>dnl.utils</groupId>
-            <artifactId>j-text-utils</artifactId>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-testng</artifactId>
-            <version>${cucumber.version}</version>
-            <scope>test</scope>
-        </dependency>
-
     </dependencies>
 
     <build>

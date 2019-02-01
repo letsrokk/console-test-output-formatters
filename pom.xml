@@ -6,21 +6,24 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.fxclub.qa</groupId>
-    <artifactId>cucumber-jvm-console-plugin-parent</artifactId>
+    <artifactId>console-test-output-formatters-parent</artifactId>
     <version>4.0.0</version>
     <modules>
         <module>cucumber-jvm-console-formatter</module>
         <module>cucumber2-jvm-console-plugin</module>
         <module>cucumber-jvm4-console-plugin</module>
+        <module>testng-console-listener</module>
     </modules>
 
-    <name>cucumber-jvm-console-plugins</name>
-    <description>Cucumber JVM Console Output Plugins</description>
+    <name>console-test-output-formatters</name>
+    <description>Console Test Output Formatters</description>
 
     <properties>
         <project.jdk.version>1.8</project.jdk.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <testng.version>6.14.3</testng.version>
 
         <cucumber.jvm.parallel.version>4.2.0</cucumber.jvm.parallel.version>
         <cucumber.options.features>src/test/resources/features/</cucumber.options.features>
@@ -62,6 +65,12 @@
                 <groupId>dnl.utils</groupId>
                 <artifactId>j-text-utils</artifactId>
                 <version>0.6.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>${testng.version}</version>
             </dependency>
 
         </dependencies>
@@ -145,7 +154,7 @@
         <repository>
             <id>bintray-letsrokk-github</id>
             <name>letsrokk-github</name>
-            <url>https://api.bintray.com/maven/letsrokk/github/cucumber-jvm-console-plugins/;publish=1;override=1</url>
+            <url>https://api.bintray.com/maven/letsrokk/github/console-test-output-formatters/;publish=1;override=1</url>
         </repository>
     </distributionManagement>
 
