@@ -3,7 +3,7 @@
     <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.fxclub.qa</groupId>
+    <groupId>com.github.letsrokk</groupId>
     <artifactId>console-test-output-formatters-parent</artifactId>
     <version>5.0.2-SNAPSHOT</version>
     <modules>

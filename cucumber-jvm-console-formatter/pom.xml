@@ -5,7 +5,7 @@
 
     <parent>
         <artifactId>console-test-output-formatters-parent</artifactId>
-        <groupId>org.fxclub.qa</groupId>
+        <groupId>com.github.letsrokk</groupId>
         <version>5.0.2-SNAPSHOT</version>
     </parent>
 
