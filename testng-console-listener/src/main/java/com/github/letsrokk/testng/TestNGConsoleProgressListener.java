@@ -46,7 +46,7 @@ public class TestNGConsoleProgressListener extends TestListenerAdapter {
 
         int testCounter = increaseTestFinishedCounter();
         String error_msg = Functions.extractMessageError(tr.getThrowable());
-        logger.info("FAIL #" + testCounter + ": " + generateMethodSignature(tr) + ": " + error_msg);
+        logger.error("FAIL  #" + testCounter + ": " + generateMethodSignature(tr) + ": " + error_msg);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class TestNGConsoleProgressListener extends TestListenerAdapter {
         logger.debug("=========================================================");
 
         int testCounter = increaseTestFinishedCounter();
-        logger.info("SKIP #" + testCounter + ": " + generateMethodSignature(tr));
+        logger.warn("SKIP  #" + testCounter + ": " + generateMethodSignature(tr));
     }
 
     @Override
@@ -119,6 +119,7 @@ public class TestNGConsoleProgressListener extends TestListenerAdapter {
     @Override
     public void onConfigurationSkip(ITestResult tr) {
         super.onConfigurationSkip(tr);
+        logger.warn("CONFIGURATION SKIPPED: " + tr.getName());
         logger.debug("=========================================================");
         logger.debug("=== TESTNG: CONFIGURATION SKIP: " + tr.toString());
         logger.debug("=========================================================");
