@@ -6,7 +6,7 @@
     <parent>
         <artifactId>console-test-output-formatters-parent</artifactId>
         <groupId>com.github.letsrokk</groupId>
-        <version>5.0.3</version>
+        <version>5.0.4-SNAPSHOT</version>
     </parent>
 
     <artifactId>cucumber2-jvm-console-plugin</artifactId>
