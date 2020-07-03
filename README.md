@@ -1,4 +1,4 @@
-# cucumber-jvm-console-plugins [ ![Download](https://api.bintray.com/packages/letsrokk/github/cucumber-jvm-console-plugins/images/download.svg) ](https://bintray.com/letsrokk/github/cucumber-jvm-console-plugins/_latestVersion)
+# console-test-output-formatters [ ![Download](https://api.bintray.com/packages/letsrokk/github/console-test-output-formatters/images/download.svg) ](https://bintray.com/letsrokk/github/console-test-output-formatters/_latestVersion)
 
 Print out Scenario execution results in console. 
 Created to print results for Scenarios which are executed in parallel (e.g. using [cucumber-jvm-parallel-plugin](https://github.com/temyers/cucumber-jvm-parallel-plugin)) 
