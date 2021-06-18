@@ -5,7 +5,7 @@
 
     <groupId>com.github.letsrokk</groupId>
     <artifactId>console-test-output-formatters-parent</artifactId>
-    <version>5.0.6-SNAPSHOT</version>
+    <version>6.0.0-SNAPSHOT</version>
     <modules>
         <module>cucumber-jvm4-console-plugin</module>
         <module>testng-console-listener</module>
@@ -36,31 +36,20 @@
         <surefire.thread.count>3</surefire.thread.count>
     </properties>
 
-    <repositories>
-        <repository>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <id>bintray-letsrokk-github</id>
-            <name>bintray</name>
-            <url>http://dl.bintray.com/letsrokk/github</url>
-        </repository>
-    </repositories>
-
     <dependencyManagement>
         <dependencies>
             <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-core</artifactId>
-                <version>2.10.0</version>
+                <version>2.11.0</version>
             </dependency>
 
             <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-api</artifactId>
-                <version>2.10.0</version>
+                <version>2.11.0</version>
             </dependency>
 
             <!-- https://bintray.com/letsrokk/github/j-text-utils -->
@@ -169,12 +158,12 @@
         </pluginManagement>
     </build>
 
-    <distributionManagement>
-        <repository>
-            <id>bintray-letsrokk-github</id>
-            <name>letsrokk-github</name>
-            <url>https://api.bintray.com/maven/letsrokk/github/console-test-output-formatters/;publish=1;override=1</url>
-        </repository>
-    </distributionManagement>
+<!--    <distributionManagement>-->
+<!--        <repository>-->
+<!--            <id>bintray-letsrokk-github</id>-->
+<!--            <name>letsrokk-github</name>-->
+<!--            <url>https://api.bintray.com/maven/letsrokk/github/console-test-output-formatters/;publish=1;override=1</url>-->
+<!--        </repository>-->
+<!--    </distributionManagement>-->
 
 </project>
