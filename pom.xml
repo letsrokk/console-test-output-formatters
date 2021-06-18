@@ -7,8 +7,6 @@
     <artifactId>console-test-output-formatters-parent</artifactId>
     <version>5.0.6-SNAPSHOT</version>
     <modules>
-        <module>cucumber-jvm-console-formatter</module>
-        <module>cucumber2-jvm-console-plugin</module>
         <module>cucumber-jvm4-console-plugin</module>
         <module>testng-console-listener</module>
     </modules>
