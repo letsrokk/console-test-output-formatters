@@ -26,9 +26,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <testng.version>6.14.3</testng.version>
+        <testng.version>7.4.0</testng.version>
+        <log4j.version>2.14.1</log4j.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-release-plugin.version>3.0.0-M4</maven-release-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
 
-        <cucumber.jvm.parallel.version>4.2.0</cucumber.jvm.parallel.version>
         <cucumber.options.features>src/test/resources/features/</cucumber.options.features>
         <cucumber.options.glue />
         <cucumber.options.plugin />
@@ -42,14 +46,14 @@
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-core</artifactId>
-                <version>2.11.0</version>
+                <version>${log4j.version}</version>
             </dependency>
 
             <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-api</artifactId>
-                <version>2.11.0</version>
+                <version>${log4j.version}</version>
             </dependency>
 
             <!-- https://bintray.com/letsrokk/github/j-text-utils -->
@@ -71,8 +75,9 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.1</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>${project.jdk.version}</source>
                     <target>${project.jdk.version}</target>
@@ -84,7 +89,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.5.3</version>
+                <version>${maven-release-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>default</id>
@@ -101,52 +106,14 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>com.github.temyers</groupId>
-                    <artifactId>cucumber-jvm-parallel-plugin</artifactId>
-                    <version>${cucumber.jvm.parallel.version}</version>
-                    <executions>
-                        <execution>
-                            <id>generateRunners</id>
-                            <phase>generate-test-sources</phase>
-                            <goals>
-                                <goal>generateRunners</goal>
-                            </goals>
-                            <configuration>
-                                <outputDirectory>${project.build.directory}/generated-test-sources/cucumber</outputDirectory>
-                                <!-- The directory, which must be in the root of the runtime classpath, containing your feature files.  -->
-                                <featuresDirectory>${cucumber.options.features}</featuresDirectory>
-                                <tags>@good</tags>
-                                <!-- Directory where the cucumber report files shall be written  -->
-                                <cucumberOutputDir>target/cucumber-parallel</cucumberOutputDir>
-                                <glue>
-                                    <package>${cucumber.options.glue}</package>
-                                </glue>
-                                <plugins>
-                                    <plugin>
-                                        <name>null_summary</name>
-                                    </plugin>
-                                    <plugin>
-                                        <name>json</name>
-                                    </plugin>
-                                    <plugin>
-                                        <name>${cucumber.options.plugin}</name>
-                                        <noOutput>true</noOutput>
-                                    </plugin>
-                                </plugins>
-                                <strict>true</strict>
-                                <monochrome>false</monochrome>
-                                <useTestNG>true</useTestNG>
-                                <namingScheme>pattern</namingScheme>
-                                <namingPattern>{f}{c}Test</namingPattern>
-                                <parallelScheme>SCENARIO</parallelScheme>
-                            </configuration>
-                        </execution>
-                    </executions>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven-jar-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.20</version>
+                    <version>${maven-surefire-plugin.version}</version>
                     <configuration>
                         <parallel>classes</parallel>
                         <threadCount>${surefire.thread.count}</threadCount>
