@@ -5,7 +5,7 @@
 
     <groupId>com.github.letsrokk</groupId>
     <artifactId>console-test-output-formatters-parent</artifactId>
-    <version>6.0.0</version>
+    <version>6.0.1-SNAPSHOT</version>
     <modules>
         <module>cucumber-jvm4-console-plugin</module>
         <module>testng-console-listener</module>
@@ -18,7 +18,7 @@
         <url>scm:git:https://github.com/letsrokk/console-test-output-formatters.git</url>
         <connection>scm:git:https://github.com/letsrokk/console-test-output-formatters.git</connection>
         <developerConnection>scm:git:https://github.com/letsrokk/console-test-output-formatters.git</developerConnection>
-        <tag>console-test-output-formatters-parent-6.0.0</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <properties>
