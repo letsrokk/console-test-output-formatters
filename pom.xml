@@ -87,22 +87,22 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-release-plugin</artifactId>-->
-<!--                <version>${maven-release-plugin.version}</version>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>default</id>-->
-<!--                        <goals>-->
-<!--                            <goal>perform</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--                <configuration>-->
-<!--                    <autoVersionSubmodules>true</autoVersionSubmodules>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>${maven-release-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>default</id>
+                        <goals>
+                            <goal>perform</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                </configuration>
+            </plugin>
         </plugins>
         <pluginManagement>
             <plugins>
@@ -126,12 +126,17 @@
         </pluginManagement>
     </build>
 
-<!--    <distributionManagement>-->
-<!--        <repository>-->
-<!--            <id>bintray-letsrokk-github</id>-->
-<!--            <name>letsrokk-github</name>-->
-<!--            <url>https://api.bintray.com/maven/letsrokk/github/console-test-output-formatters/;publish=1;override=1</url>-->
-<!--        </repository>-->
-<!--    </distributionManagement>-->
+    <distributionManagement>
+        <repository>
+            <id>central</id>
+            <name>a0blb5hym51wy-artifactory-primary-0-releases</name>
+            <url>https://letsrokk.jfrog.io/artifactory/github-libs-release-local</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>a0blb5hym51wy-artifactory-primary-0-snapshots</name>
+            <url>https://letsrokk.jfrog.io/artifactory/github-libs-snapshot-local</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>
