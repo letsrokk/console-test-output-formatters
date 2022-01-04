@@ -28,7 +28,7 @@
 
         <!-- TestNG 7.4.0 is not compatible with Surefire 3.0.0-M5, should be fixed in M6 -->
         <testng.version>7.3.0</testng.version>
-        <log4j.version>2.14.1</log4j.version>
+        <log4j.version>2.17.1</log4j.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-release-plugin.version>3.0.0-M4</maven-release-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
